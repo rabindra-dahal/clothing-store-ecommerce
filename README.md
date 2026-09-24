@@ -1,4 +1,5 @@
 ## Main app folder structure
+```
 shopping-sqlite/
 │
 ├── app/
@@ -13,9 +14,10 @@ shopping-sqlite/
 │   │   ├── browsing.py   # Public endpoints (clothes catalog)
 │   │   └── cart.py       # Protected endpoints (cart, checkout, orders)
 │   └── main.py           # FastAPI initialization & router assembly
+```
 
 ## Test folder structure
-
+```
 shopping-sqlite/
 │
 ├── app/
@@ -24,6 +26,7 @@ shopping-sqlite/
     ├── __init__.py
     ├── conftest.py      # Fixtures (database reset, test client setup)
     └── test_routes.py   # Test cases for auth, catalog, and checkout
+```
 
 ## To see test coverage
 
