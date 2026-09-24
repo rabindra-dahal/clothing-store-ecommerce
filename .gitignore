@@ -7,6 +7,7 @@ __pycache__/
 *.so
 
 # Distribution / packaging
+*.db
 .Python
 build/
 develop-eggs/
@@ -216,3 +217,26 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Python caching
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+
+# Local SQLite databases
+*.db
+*.db-journal
+*.db-wal
