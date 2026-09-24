@@ -1,0 +1,43 @@
+name: FastAPI Clothing Store CI Suite
+
+# Trigger the pipeline on pushes or pull requests to the main branch
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Checkout the code repository layout onto the worker instance
+    - name: Checkout Code Repository
+      uses: actions/checkout@v4
+
+    # 2. Setup Python environment runner engine
+    - name: Set up Python Environment
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    # 3. Cache dependencies to speed up subsequent workflow runs
+    - name: Cache Pip Dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    # 4. Install all runtime and testing packages 
+    - name: Install Project Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install fastapi uvicorn PyJWT bcrypt pytest httpx pytest-cov
+
+    # 5. Run the full unit testing coverage routine matrix
+    - name: Execute Pytest Suite with Coverage Verification
+      run: |
+        pytest --cov=app -v
